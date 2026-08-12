@@ -33,8 +33,10 @@ SaaS multiempresa para controle de estoque, produção, vendas e gestão de pequ
 ## Como executar
 
 ~~~bash
-git clone https://github.com/ArthurFancisco/ControleEstoque.git
+git clone https://github.com/arthur-amancio/ControleEstoque.git
 cd ControleEstoque
+cp .env.example .env
+# Preencha DB_PASSWORD, JWT_SECRET e INITIAL_ADMIN_PASSWORD no arquivo .env.
 docker compose --profile app up --build
 ~~~
 
@@ -72,14 +74,16 @@ As informações sensíveis devem ser fornecidas por variáveis de ambiente:
 
 - DB_URL
 - DB_USERNAME
-- DB_PASSWORD
-- JWT_SECRET
+- DB_PASSWORD — senha exclusiva do PostgreSQL;
+- JWT_SECRET — chave aleatória com pelo menos 32 caracteres;
 - JWT_EXPIRATION_MINUTES
 - CORS_ALLOWED_ORIGINS
-- INITIAL_ADMIN_PASSWORD
+- INITIAL_ADMIN_PASSWORD — senha inicial com pelo menos 12 caracteres;
 - VITE_API_URL
 
-Use credenciais exclusivas em cada ambiente e nunca publique segredos reais.
+Antes da primeira execução, copie `.env.example` para `.env` e preencha os valores. O arquivo `.env` é ignorado pelo Git e não deve ser publicado.
+
+No PowerShell, use `Copy-Item .env.example .env`. Use credenciais exclusivas em cada ambiente e nunca publique segredos reais.
 
 ## Estrutura
 
